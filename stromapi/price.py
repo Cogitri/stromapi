@@ -1,37 +1,27 @@
-from datetime import datetime
-import pytz
+import datetime
 
 
 class Price:
-    __start: datetime
-    __end: datetime
+    __start: datetime.datetime
+    __end: datetime.datetime
     __price: float
 
-    def __init__(self, start: datetime, end: datetime, price: float):
+    def __init__(self, start: datetime.datetime, end: datetime.datetime, price: float):
         self.__start = start
         self.__end = end
         self.__price = price
 
     @classmethod
     def from_api_data(
-        cls, date: str, start: str, startTz: str, end: str, endTz: str, price: str
+        cls,
+        start: datetime.datetime,
+        intervalMinutes: int,
+        priceMwh: float,
     ):
-        date = datetime.strptime(date, "%d.%m.%Y")
-        start_time = datetime.strptime(start, "%H:%M")
-        end_time = datetime.strptime(end, "%H:%M")
+        end = start + datetime.timedelta(minutes=intervalMinutes)
+        priceKwh = priceMwh / 10
 
-        start = datetime.combine(date, start_time.time())
-        end = datetime.combine(date, end_time.time())
-
-        start_tz = pytz.timezone(startTz)
-        end_tz = pytz.timezone(endTz)
-
-        start = start_tz.localize(start)
-        end = end_tz.localize(end)
-
-        price = float(price.replace(",", "."))
-
-        return cls(start, end, price)
+        return cls(start, end, priceKwh)
 
     @property
     def start(self) -> datetime:

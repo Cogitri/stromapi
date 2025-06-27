@@ -67,6 +67,10 @@ class DataCell:
             weather.get_sun_duration(price.start),
         )
 
+    @staticmethod
+    def __float_format(num: float) -> str:
+        return "{:.2f}".format(num)
+
     @property
     def start(self):
         return self.__start
@@ -77,10 +81,12 @@ class DataCell:
 
     @property
     def price(self):
-        return self.__price
+        return self.__float_format(self.__price)
 
     @property
     def temperature(self):
+        if self.__temperature:
+            return self.__float_format(self.__temperature)
         return self.__temperature
 
     @property

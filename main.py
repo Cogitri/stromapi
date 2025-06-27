@@ -1,8 +1,8 @@
 import argparse
 
-from stromapi.authenticator import Authenticator
 from stromapi.config import Config
 from stromapi.collector import Collector
+from stromapi.day_ahead_prices import DayAheadPrices
 from stromapi.weather import Weather
 
 
@@ -16,11 +16,10 @@ def main():
     args = parser.parse_args()
 
     config = Config()
-    authenticator = Authenticator(config)
-    authenticator.query_token()
     weather = Weather.from_config(config)
-    collector = Collector(authenticator.token)
-    cells = collector.run(weather)
+    day_ahead_prices = DayAheadPrices.from_config(config)
+    collector = Collector()
+    cells = collector.run(day_ahead_prices, weather)
     collector.dump_csv(args.output_path, cells)
 
 

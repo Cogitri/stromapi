@@ -7,6 +7,7 @@ import pytz
 import requests
 
 from stromapi.data_cell import DataCell
+from stromapi.day_ahead_prices import DayAheadPrices
 from stromapi.exceptions.api_error import ApiError
 from stromapi.price import Price
 from stromapi.weather import Weather
@@ -14,55 +15,21 @@ from stromapi.weather import Weather
 
 class Collector:
     __weather: Weather
-    __token: str
-    __base_path: str = "https://ds.netztransparenz.de"
 
-    def __init__(self, token: str):
-        self.__token = token
+    def __init__(self):
+        pass
 
-    def run(self, weather: Weather) -> List[DataCell]:
-        prices = self.get_spotmarktpreise()
+    def run(self, day_ahead_prices: DayAheadPrices, weather: Weather) -> List[DataCell]:
+        prices = day_ahead_prices.query_day_ahead_prices(
+            self.__get_date(-1), self.__get_date(1)
+        )
         return [DataCell.from_price(weather, x) for x in prices]
 
     @staticmethod
-    def __get_date_str(delta: int) -> str:
+    def __get_date(delta: int) -> str:
         time = datetime.datetime.now(pytz.utc)
         day = time + datetime.timedelta(days=delta)
-        return day.strftime("%Y-%m-%dT%H:%M:%S")
-
-    def get_spotmarktpreise(self) -> List[Price]:
-        dateFrom = self.__get_date_str(-1)
-        dateTo = self.__get_date_str(1)
-        print(f"{self.__base_path}/api/v1/data/Spotmarktpreise/{dateFrom}/{dateTo}")
-        resp = requests.get(
-            f"{self.__base_path}/api/v1/data/Spotmarktpreise/{dateFrom}/{dateTo}",
-            headers=self.__headers(),
-        )
-        if not resp.ok:
-            raise ApiError(resp)
-
-        reader = csv.DictReader(
-            resp.text.splitlines(),
-            delimiter=";",
-            fieldnames=["date", "start", "startTZ", "end", "endTZ", "price"],
-        )
-        # Skip the header
-        reader.__next__()
-
-        result = []
-        for row in reader:
-            result.append(
-                Price.from_api_data(
-                    row["date"],
-                    row["start"],
-                    row["startTZ"],
-                    row["end"],
-                    row["endTZ"],
-                    row["price"],
-                )
-            )
-
-        return result
+        return day
 
     def dump_csv(self, output_path: Path, data_cells: List[DataCell]):
         with open(output_path, "w") as f:
@@ -72,6 +39,3 @@ class Collector:
             writer.writerow(DataCell.csv_header())
             for cell in data_cells:
                 writer.writerow(cell.to_csv_row())
-
-    def __headers(self) -> str:
-        return {"Authorization": "Bearer {}".format(self.__token)}
