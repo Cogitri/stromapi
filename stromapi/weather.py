@@ -1,3 +1,4 @@
+import pytz
 from simple_dwd_weatherforecast import dwdforecast
 from datetime import datetime
 
@@ -14,8 +15,9 @@ class Weather:
     def __get_forecast(
         self, weatherDataType: dwdforecast.WeatherDataType, timestamp: datetime
     ):
+        utc_timestamp = timestamp.astimezone(pytz.utc)
         return self.__weather.get_forecast_data(
-            weatherDataType, timestamp, shouldUpdate=False
+            weatherDataType, utc_timestamp, shouldUpdate=False
         )
 
     @staticmethod
