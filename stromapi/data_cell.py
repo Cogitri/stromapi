@@ -64,7 +64,7 @@ class DataCell:
             weather.get_precipitation_duration(price.start),
             weather.get_cloud_coverage(price.start),
             weather.get_sun_duration(price.start),
-            weather.get_sun_duration(price.start),
+            weather.get_sun_irradiance(price.start),
         )
 
     @staticmethod
