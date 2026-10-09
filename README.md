@@ -5,7 +5,7 @@ This project can generate a CSV file containing energy price and weather data.
 ## Requirements
 
 This projects needs python >=3.11 and `uv` as package manager. See [uv's documentation](https://docs.astral.sh/uv/getting-started/installation/) on how to install `uv`.
-Once installed, the project can be run with `uv run main.py --output-path=output.csv`
+Once installed, the project can be run with `uv run main.py --output-path=output.csv [--config-path=/my/custom/config.toml]`
 
 ## Configuration
 
