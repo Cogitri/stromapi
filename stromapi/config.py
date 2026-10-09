@@ -12,7 +12,7 @@ class Config:
         if not config_path.exists():
             raise RuntimeError(f"Couldn't find config.toml: '{config_path}'")
 
-        with open("config.toml", "rb") as f:
+        with open(config_path, "rb") as f:
             toml_dict = tomli.load(f)
         self.__client_secret = toml_dict["entsoe"]["client_secret"]
         self.__latitude = toml_dict["weather"]["latitude"]
