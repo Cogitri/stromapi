@@ -1,6 +1,7 @@
+from datetime import datetime
+
 import pytz
 from simple_dwd_weatherforecast import dwdforecast
-from datetime import datetime
 
 from stromapi.config import Config
 

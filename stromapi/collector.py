@@ -1,15 +1,11 @@
 import csv
 import datetime
-from typing import List, Tuple
 from pathlib import Path
 
 import pytz
-import requests
 
 from stromapi.data_cell import DataCell
 from stromapi.day_ahead_prices import DayAheadPrices
-from stromapi.exceptions.api_error import ApiError
-from stromapi.price import Price
 from stromapi.weather import Weather
 
 
@@ -19,7 +15,7 @@ class Collector:
     def __init__(self):
         pass
 
-    def run(self, day_ahead_prices: DayAheadPrices, weather: Weather) -> List[DataCell]:
+    def run(self, day_ahead_prices: DayAheadPrices, weather: Weather) -> list[DataCell]:
         prices = day_ahead_prices.query_day_ahead_prices(
             self.__get_date(-1), self.__get_date(1)
         )
@@ -31,7 +27,7 @@ class Collector:
         day = time + datetime.timedelta(days=delta)
         return day
 
-    def dump_csv(self, output_path: Path, data_cells: List[DataCell]):
+    def dump_csv(self, output_path: Path, data_cells: list[DataCell]):
         with open(output_path, "w") as f:
             writer = csv.writer(
                 f, delimiter=",", quotechar="|", quoting=csv.QUOTE_MINIMAL

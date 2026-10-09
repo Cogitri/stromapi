@@ -1,8 +1,8 @@
 import argparse
 from pathlib import Path
 
-from stromapi.config import Config
 from stromapi.collector import Collector
+from stromapi.config import Config
 from stromapi.day_ahead_prices import DayAheadPrices
 from stromapi.weather import Weather
 

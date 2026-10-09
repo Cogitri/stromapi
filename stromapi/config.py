@@ -2,6 +2,7 @@ from pathlib import Path
 
 import tomli
 
+
 class Config:
     __client_secret: str
     __resolution_in_minutes: int
@@ -10,7 +11,7 @@ class Config:
 
     def __init__(self, config_path: Path):
         if not config_path.exists():
-            raise Exception(f"Couldn't find config.toml: '{config_path}'")
+            raise RuntimeError(f"Couldn't find config.toml: '{config_path}'")
 
         with open("config.toml", "rb") as f:
             toml_dict = tomli.load(f)

@@ -1,5 +1,4 @@
 from datetime import datetime
-from typing import List
 
 import pandas as pd
 from entsoe import EntsoePandasClient
@@ -21,7 +20,7 @@ class DayAheadPrices:
         client = EntsoePandasClient(api_key=config.client_secret)
         return cls(client, config.resolution_in_minutes)
 
-    def query_day_ahead_prices(self, start: datetime, end: datetime) -> List[Price]:
+    def query_day_ahead_prices(self, start: datetime, end: datetime) -> list[Price]:
         country_code = "DE_LU"
         series = self.__client.query_day_ahead_prices(
             country_code,

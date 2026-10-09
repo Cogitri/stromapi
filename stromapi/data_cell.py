@@ -69,7 +69,7 @@ class DataCell:
 
     @staticmethod
     def __float_format(num: float) -> str:
-        return "{:.2f}".format(num)
+        return f"{num:.2f}"
 
     @property
     def start(self):
