@@ -4,18 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="30bae74e-1463-4f3f-a6f3-210bd28e5181" name="Changes" comment="Initial Commit">
-      <change afterPath="$PROJECT_DIR$/stromapi/day_ahead_prices.py" afterDir="false" />
+    <list default="true" id="30bae74e-1463-4f3f-a6f3-210bd28e5181" name="Changes" comment="Convert timestamp to UTC for dwd">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.toml" beforeDir="false" afterPath="$PROJECT_DIR$/config.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stromapi/authenticator.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/stromapi/collector.py" beforeDir="false" afterPath="$PROJECT_DIR$/stromapi/collector.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stromapi/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/stromapi/config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stromapi/data_cell.py" beforeDir="false" afterPath="$PROJECT_DIR$/stromapi/data_cell.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stromapi/price.py" beforeDir="false" afterPath="$PROJECT_DIR$/stromapi/price.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uv.lock" beforeDir="false" afterPath="$PROJECT_DIR$/uv.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,6 +34,7 @@
   "keyToString": {
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "master",
     "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
@@ -57,7 +48,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-53e2683a6804-9cdd278e9d02-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-251.26094.141" />
+        <option value="bundled-python-sdk-d9fa9deec7cb-d902c0275401-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-252.23892.515" />
       </set>
     </attachedChunks>
   </component>
@@ -77,11 +68,29 @@
       <option name="project" value="LOCAL" />
       <updated>1750948072835</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Switch to entsoe for price data">
+      <option name="closed" value="true" />
+      <created>1751032110034</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1751032110034</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Convert timestamp to UTC for dwd">
+      <option name="closed" value="true" />
+      <created>1752213856026</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1752213856026</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial Commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial Commit" />
+    <MESSAGE value="Switch to entsoe for price data" />
+    <MESSAGE value="Convert timestamp to UTC for dwd" />
+    <option name="LAST_COMMIT_MESSAGE" value="Convert timestamp to UTC for dwd" />
   </component>
 </project>

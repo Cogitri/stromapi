@@ -1,5 +1,6 @@
-import tomli
+from pathlib import Path
 
+import tomli
 
 class Config:
     __client_secret: str
@@ -7,7 +8,10 @@ class Config:
     __latitude: float
     __longitude: float
 
-    def __init__(self):
+    def __init__(self, config_path: Path):
+        if not config_path.exists():
+            raise Exception(f"Couldn't find config.toml: '{config_path}'")
+
         with open("config.toml", "rb") as f:
             toml_dict = tomli.load(f)
         self.__client_secret = toml_dict["entsoe"]["client_secret"]
